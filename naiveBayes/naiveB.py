@@ -142,7 +142,7 @@ def calculateProbability(x, mean, stdev):
 
 def calculateClassProbabilities(summaries, inputVector):
     """
-
+    计算所属类的概率
     :param summaries:
     :param inputVector:
     :return:
@@ -158,7 +158,12 @@ def calculateClassProbabilities(summaries, inputVector):
 
 
 def predict(summaries, inputVector):
-
+    """
+    单一预测
+    :param summaries:
+    :param inputVector:
+    :return:
+    """
     probabilities = calculateClassProbabilities(summaries, inputVector)
     bestLabel, bestProb = None, -1
     for classValue, probability in probabilities.iteritems():
@@ -167,7 +172,14 @@ def predict(summaries, inputVector):
             bestLabel = classValue
     return bestLabel
 
+
 def getPredictions(summaries, testSet):
+    """
+    多重预测
+    :param summaries:
+    :param testSet:
+    :return:
+    """
     predictions = []
     for i in range(len(testSet)):
         result = predict(summaries, testSet[i])
@@ -176,6 +188,12 @@ def getPredictions(summaries, testSet):
 
 
 def getAccuracy(testSet, predictions):
+    """
+    计算预测的精度
+    :param testSet:
+    :param predictions:
+    :return:
+    """
     correct = 0
     for x in range(len(testSet)):
         if testSet[x][-1] == predictions[x]:
