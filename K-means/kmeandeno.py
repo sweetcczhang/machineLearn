@@ -10,7 +10,7 @@ def filematrix(filename):
     fr = open(filename, 'r')
     array0lines = fr.readlines()
     numberOfLines = len(array0lines)
-    returnMat = np.zeros((numberOfLines,3))
+    returnMat = np.zeros((numberOfLines, 3))
     classLabelVector = [] #开辟容器
     index = 0
     for line in array0lines:
@@ -65,6 +65,11 @@ def KMeans(dataSet, k, disMeas = distEclud, creatCent = randCent):
         print centroids
         for cent in range(k):
             # nonzeros(a=k) 返回数组a中值不为k的元素的下标
-            ptsInClust = dataSet[np.nonzero(clusterAssment[:, 0].A == cent)[0]]
-            centroids[cent, :] = np.mean(ptsInClust,axis=0)
+            ptsInClust =[]
+            for j in range(m):
+                if clusterAssment[j, 0] == cent:
+                    ptsInClust.append(dataSet[j].toList()[0])
+            ptsInClust = np.mat(ptsInClust)
+            #ptsInClust = dataSet[np.nonzero(clusterAssment[:, 0].A == cent)[0]]
+            centroids[cent, :] = np.mean(ptsInClust, axis=0)
     return centroids, clusterAssment
