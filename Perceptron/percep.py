@@ -46,7 +46,7 @@ def check():
     """
     flag = False
     for item in training_set:
-        if cal(item) <=  0:
+        if cal(item) <= 0:
             flag = True
             update(item)
     # draw a graph to show the process
